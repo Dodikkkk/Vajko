@@ -23,3 +23,25 @@
 .polovica {
     align-content: center;
 }
+
+.stats {
+    color: #769AAA;
+    background: #151F2E;
+}
+
+.highlighted {
+    color: #DA4127;
+}
+
+.highlightedBg {
+    background: #DA4127;
+}
+
+.navBarColors {
+    color: #DBDDE2;
+    background: #242540;
+}
+
+.bgColor {
+    background: #0B1622;
+}
