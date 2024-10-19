@@ -11,3 +11,15 @@
     width: 2.5rem;
     height: 2.5rem;
 }
+
+.stovka {
+    margin-left: auto;
+}
+
+.nula {
+    margin-right: auto;
+}
+
+.polovica {
+    align-content: center;
+}
