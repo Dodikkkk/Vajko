@@ -102,6 +102,7 @@
     margin-left: 5rem;
     margin-top: 3rem;
     width: 15rem;
+    min-width: 15rem;
 }
 
 .actor {
@@ -114,4 +115,26 @@
 
 .horizontalMargin {
     margin: 0 5rem;
+}
+
+.movieHeader {
+    flex-basis: 20rem;
+    flex-grow: 1;
+}
+
+.actorDiv {
+    width: 10rem;
+}
+
+.actorList {
+    flex-basis: 20rem;
+    flex-grow: 1;
+}
+
+.setAsWatched {
+    margin-left: 5rem;
+    margin-top: 1rem;
+    background: rgb(61, 180, 242);
+    color: azure;
+    width: 15rem;
 }
