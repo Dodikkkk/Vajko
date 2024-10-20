@@ -138,3 +138,7 @@
     color: azure;
     width: 15rem;
 }
+
+.imgRes img {
+    width: clamp(6rem, 15vw, 15rem);
+}
