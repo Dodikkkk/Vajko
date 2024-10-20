@@ -54,3 +54,25 @@
     flex-grow: 1;
     flex-basis: 30rem;
 }
+
+.activityTextMargin {
+    margin-left: 1rem;
+    margin-top: 3rem;
+}
+
+.browseImage {
+    width: 13rem;
+}
+
+.titleColor {
+    color: #769AAA;
+}
+
+.linkText {
+    text-decoration: none;
+
+}
+
+.titleColor:hover {
+    color: #DA4127;
+}
