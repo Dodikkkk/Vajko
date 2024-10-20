@@ -100,4 +100,18 @@
     background: #151F2E;
     color: #769AAA;
     margin-left: 5rem;
+    margin-top: 3rem;
+    width: 15rem;
+}
+
+.actor {
+    width: 5rem;
+}
+
+.textColor {
+    color: #769AAA;
+}
+
+.horizontalMargin {
+    margin: 0 5rem;
 }
