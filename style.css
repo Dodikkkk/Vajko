@@ -64,6 +64,13 @@
     width: 13rem;
 }
 
+.moviePageImage {
+    width: 15rem;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    margin-right: 3rem;
+}
+
 .titleColor {
     color: #769AAA;
 }
@@ -75,4 +82,22 @@
 
 .titleColor:hover {
     color: #DA4127;
+}
+
+.movieDesc {
+    color: #769AAA;
+    min-width: 20rem;
+    max-width: 80rem;
+}
+
+.movieTitle {
+    color: #769AAA;
+    margin-top: 8rem;
+    margin-bottom: 1rem;;
+}
+
+.movieStats {
+    background: #151F2E;
+    color: #769AAA;
+    margin-left: 5rem;
 }
