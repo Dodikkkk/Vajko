@@ -142,3 +142,25 @@
 .imgRes img {
     width: clamp(6rem, 15vw, 15rem);
 }
+
+.loginBox {
+    max-width: 25rem;
+    min-width: 12rem;
+
+}
+
+.loginText {
+    margin-bottom: 4rem;
+}
+
+.loginBar {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.loginButton {
+    margin: 1rem;
+    background: rgb(61, 180, 242);
+    color: azure;
+    width: 6rem;
+}
