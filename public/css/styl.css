@@ -1,0 +1,166 @@
+.full-width {
+    width: 100%;
+    padding: 0 5%;
+}
+
+.maly-obrazok {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.stovka {
+    margin-left: auto;
+}
+
+.nula {
+    margin-right: auto;
+}
+
+.polovica {
+    align-content: center;
+}
+
+.stats {
+    color: #769AAA;
+    background: #151F2E;
+}
+
+.highlighted {
+    color: #DA4127;
+}
+
+.highlightedBg {
+    background: #DA4127;
+}
+
+.navBarColors {
+    color: #DBDDE2;
+    background: #242540;
+}
+
+.bgColor {
+    background: #0B1622;
+}
+
+.activityImage {
+    height: 10rem;
+}
+
+.activityDate {
+    margin-left: auto;
+}
+
+.activityWidth {
+    flex-grow: 1;
+    flex-basis: 30rem;
+}
+
+.activityTextMargin {
+    margin-left: 1rem;
+    margin-top: 3rem;
+}
+
+.browseImage {
+    width: 13rem;
+}
+
+.moviePageImage {
+    width: 15rem;
+    margin-left: 5rem;
+    margin-top: 5rem;
+    margin-right: 3rem;
+}
+
+.titleColor {
+    color: #769AAA;
+}
+
+.linkText {
+    text-decoration: none;
+
+}
+
+.titleColor:hover {
+    color: #DA4127;
+}
+
+.movieDesc {
+    color: #769AAA;
+    min-width: 20rem;
+    max-width: 80rem;
+}
+
+.movieTitle {
+    color: #769AAA;
+    margin-top: 8rem;
+    margin-bottom: 1rem;;
+}
+
+.movieStats {
+    background: #151F2E;
+    color: #769AAA;
+    margin-left: 5rem;
+    margin-top: 3rem;
+    width: 15rem;
+    min-width: 15rem;
+}
+
+.actor {
+    width: 5rem;
+}
+
+.textColor {
+    color: #769AAA;
+}
+
+.horizontalMargin {
+    margin: 0 5rem;
+}
+
+.movieHeader {
+    flex-basis: 20rem;
+    flex-grow: 1;
+}
+
+.actorDiv {
+    width: 10rem;
+}
+
+.actorList {
+    flex-basis: 20rem;
+    flex-grow: 1;
+}
+
+.setAsWatched {
+    margin-left: 5rem;
+    margin-top: 1rem;
+    background: rgb(61, 180, 242);
+    color: azure;
+    width: 15rem;
+}
+
+.imgRes img {
+    width: clamp(6rem, 15vw, 15rem);
+}
+
+.loginBox {
+    max-width: 25rem;
+    min-width: 12rem;
+
+}
+
+.loginText {
+    margin-bottom: 4rem;
+}
+
+.loginBar {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+}
+
+.loginButton {
+    margin: 1rem;
+    background: rgb(61, 180, 242);
+    color: azure;
+    width: 6rem;
+}
