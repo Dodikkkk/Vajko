@@ -50,9 +50,25 @@ class HomeController extends AControllerBase
         return $this->html();
     }
 
-    public function login(): Response
+    public function form(): Response
     {
         return $this->html();
+    }
+
+    public function login(): Response
+    {
+        #TODO prerobit na moj use case
+        $formData = $this->app->getRequest()->getPost();
+        $logged = null;
+        if (isset($formData['submit'])) {
+            $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
+            if ($logged) {
+                return $this->redirect($this->url("home.index"));
+            }
+        }
+
+        $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
+        return $this->html($data);
     }
 
     public function register(): Response

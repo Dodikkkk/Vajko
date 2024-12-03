@@ -3,6 +3,7 @@
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
+/** @var \App\Core\IAuthenticator $auth */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +30,7 @@
                     <a class="nav-link navBarColors" href="<?= $link->url("home.browse") ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navBarColors" href="<?= $link->url( "home.index") ?>">Profile</a>
+                    <a class="nav-link navBarColors" href="<?= $link->url($auth->isLogged() ? "home.index" : "home.login") ?>">Profile</a>
                 </li>
             </ul>
         </div>

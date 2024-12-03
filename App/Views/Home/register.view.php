@@ -11,20 +11,22 @@
             <h4 class="fw-bold m-3">Register</h4>
         </div>
 
-        <div class="loginBar">
-            <form class="my-2 my-md-0">
-                <input class="form-control " type="text" placeholder="Name" aria-label="Search">
-            </form>
-        </div>
-        <div class="loginBar">
-            <form class="my-2 my-md-0">
-                <input class="form-control " type="text" placeholder="Password" aria-label="Search">
-            </form>
-        </div>
+        <form class="form-signup" method="post" action="<?= $link->url("register") ?>">
+            <div class="loginBar">
+                <form class="my-2 my-md-0">
+                    <input name="login" type="text" id="login" class="form-control" placeholder="Login" required>
+                </form>
+            </div>
+            <div class="loginBar">
+                <form class="my-2 my-md-0">
+                    <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+                </form>
+            </div>
 
-        <div class="btn btn-primary textColor loginButton fw-bold">
-            Register
-        </div>
+            <div class="btn btn-primary textColor loginButton fw-bold" type="submit" name="submit">
+                Login
+            </div>
+        </form>
 
         <div class="loginBar">
             Aleready have account? <a href="<?= $link->url("home.login") ?>">Login here</a>

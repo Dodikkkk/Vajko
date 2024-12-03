@@ -10,9 +10,9 @@
         <div>
             <img class="moviePageImage" src="public/images/poster.jpg" alt="404">
         </div>
-        <div class="btn btn-primary textColor  setAsWatched">
-            Set as Watched
-        </div>
+        <a class="btn btn-primary textColor  setAsWatched" href="<?= $link->url("home.form") ?>">
+            Set Status
+        </a>
     </div>
     <div class="movieHeader">
         <div class="movieTitle ">
@@ -79,7 +79,7 @@
         <div class="d-flex flex-wrap justify-content-between actorList">
             <div class="actorDiv p-2">
                 <div class="text-center">
-                    <img class="actor" src="profile.webp" alt="404">
+                    <img class="actor" src="public/images/profile.webp" alt="404">
                 </div>
                 <div class="titleColor text-center p-2 ">
                     Actor
