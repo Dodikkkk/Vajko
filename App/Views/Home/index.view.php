@@ -1,3 +1,10 @@
+<?php
+
+/** @var string $contentHTML */
+/** @var \App\Core\IAuthenticator $auth */
+/** @var \App\Core\LinkGenerator $link */
+?>
+
 <div class="d-flex flex-column m-3 p-2 stats fw-bold">
     <div class="container p-2 ">
         <div class="row text-center">
@@ -50,10 +57,10 @@
 <div class="d-flex flex-wrap">
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
-            <a href="movie.view.php"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
+            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="movie.view.php"><span class="highlighted p-2">Hardcore Henry</span></a>
+            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
         </div>
         <div class="activityDate p-2">
             2 days ago
@@ -62,10 +69,10 @@
 
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
-            <a href="movie.view.php"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
+            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="movie.view.php"><span class="highlighted p-2">Hardcore Henry</span></a>
+            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
         </div>
         <div class="activityDate p-2">
             2 days ago
@@ -74,10 +81,10 @@
 
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
-            <a href="movie.view.php"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
+            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="movie.view.php"><span class="highlighted p-2">Hardcore Henry</span></a>
+            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
         </div>
         <div class="activityDate p-2">
             2 days ago

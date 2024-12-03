@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-lg navBarColors fw-bold">
     <div class="d-flex align-items-center justify-content-center full-width">
 
-        <a class="navbar-brand" href="./Home/login.view.php" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
+        <a class="navbar-brand" href="<?= $link->url("home.login") ?>" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,10 +26,10 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link navBarColors" href="./Home/browse.view.php">Browse</a>
+                    <a class="nav-link navBarColors" href="<?= $link->url("home.browse") ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navBarColors" href="./Home/index.view.php">Profile</a>
+                    <a class="nav-link navBarColors" href="<?= $link->url( "home.index") ?>">Profile</a>
                 </li>
             </ul>
         </div>
