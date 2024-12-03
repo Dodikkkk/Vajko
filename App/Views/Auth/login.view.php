@@ -1,36 +1,32 @@
 <?php
 
-$layout = 'auth';
-/** @var Array $data */
+/** @var string $contentHTML */
+/** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
 ?>
 
-<div class="container">
-    <div class="row">
-        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5">
-                <div class="card-body">
-                    <h5 class="card-title text-center">Prihlásenie</h5>
-                    <div class="text-center text-danger mb-3">
-                        <?= @$data['message'] ?>
-                    </div>
-                    <form class="form-signin" method="post" action="<?= $link->url("login") ?>">
-                        <div class="form-label-group mb-3">
-                            <input name="login" type="text" id="login" class="form-control" placeholder="Login"
-                                   required autofocus>
-                        </div>
-
-                        <div class="form-label-group mb-3">
-                            <input name="password" type="password" id="password" class="form-control"
-                                   placeholder="Password" required>
-                        </div>
-                        <div class="text-center">
-                            <button class="btn btn-primary" type="submit" name="submit">Prihlásiť
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
+<div class="d-flex align-items-center justify-content-center ">
+    <div class=" navBarColors m-5 p-5 text-center loginBox flex-grow-1">
+        <div class="loginText">
+            <h4 class="fw-bold m-3">Login</h4>
         </div>
+
+        <form class="form-signin" method="post" action="<?= $link->url("auth.login") ?>">
+            <div class="loginBar">
+                <input name="login" type="text" id="login" class="form-control" placeholder="Login" required>
+            </div>
+            <div class="loginBar">
+                <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
+            </div>
+
+            <button class="btn btn-primary textColor loginButton fw-bold" type="submit" name="submit">
+                Login
+            </button>
+        </form>
+
+        <div class="loginBar">
+            Don't have account? <a href="<?= $link->url("home.register") ?>">Register here</a>
+        </div>
+
     </div>
 </div>

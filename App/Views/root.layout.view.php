@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg navBarColors fw-bold">
     <div class="d-flex align-items-center justify-content-center full-width">
 
-        <a class="navbar-brand" href="<?= $link->url("home.login") ?>" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
+        <a class="navbar-brand" href="<?= $link->url($auth->isLogged() ? 'auth.logout' : "auth.login") ?>" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,7 +30,7 @@
                     <a class="nav-link navBarColors" href="<?= $link->url("home.browse") ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navBarColors" href="<?= $link->url($auth->isLogged() ? "home.index" : "home.login") ?>">Profile</a>
+                    <a class="nav-link navBarColors" href="<?= $link->url($auth->isLogged() ? "home.index" : "auth.login") ?>">Profile</a>
                 </li>
             </ul>
         </div>

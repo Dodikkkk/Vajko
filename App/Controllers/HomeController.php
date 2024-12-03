@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Activity;
+use http\Client\Curl\User;
 
 /**
  * Class HomeController
@@ -19,6 +21,13 @@ class HomeController extends AControllerBase
      */
     public function authorize($action)
     {
+        switch ($action) {
+            case 'form':
+                return $this->app->getAuth()->isLogged();
+
+            default:
+                return true;
+        }
         return true;
     }
 
@@ -28,7 +37,53 @@ class HomeController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        $posts = Activity::getAll('user_id = :userId', ['userId' => $this->app->getAuth()->getLoggedUserId()]);
+        return $this->html(
+            [
+                'activities' => $posts,
+            ]
+        );
+    }
+
+    public function save(): Response
+    {
+        $userId = $this->app->getAuth()->getLoggedUserId();
+        $movieId = $this->request()->getValue('movieId');
+        $existingActivity = Activity::findOne($userId, $movieId);
+
+        $status = $this->request()->getValue('status');
+        $rating = floatval($this->request()->getValue('rating'));
+        $invalidElements = [];
+
+        if (!in_array($status, ['Watched', 'Not Watched'])) {
+            $invalidElements[] = 'status';
+        }
+        if ($rating < 0 || $rating > 10) {
+            $invalidElements[] = 'rating';
+        }
+
+        if (sizeof($invalidElements) > 0) {
+            $errors = implode(',', $invalidElements);
+            return $this->redirect($this->url('form', ['movieId' => $movieId, 'errors' => $errors]));
+        }
+
+        if ($status === 'Watched') {
+
+            if ($existingActivity) {
+                $existingActivity->setRating($rating);
+                $existingActivity->save();
+            } else {
+                $activ = new Activity();
+                $activ->setUserId($userId);
+                $activ->setMovieId($movieId);
+                $activ->setRating($rating);
+                $activ->save();
+            }
+        } elseif ($status === 'Not Watched' && $existingActivity) {
+            $existingActivity->delete();
+        }
+
+        return $this->redirect($this->url('index'));
     }
 
     /**
@@ -42,33 +97,33 @@ class HomeController extends AControllerBase
 
     public function browse(): Response
     {
-        return $this->html();
+        $movies = [
+            ['movieId' => 1, 'name' => 'Fero'],
+            ['movieId' => 2, 'name' => 'Jozo'],
+            ['movieId' => 3, 'name' => 'Hardcore'],
+            ['movieId' => 4, 'name' => 'Henry'],
+        ];
+
+        return $this->html(['movies' => $movies]);
     }
 
     public function movie(): Response
     {
-        return $this->html();
+        $movieId = $this->request()->getValue('movieId');
+        return $this->html(['movieId' => $movieId]);
     }
 
     public function form(): Response
     {
-        return $this->html();
-    }
+        $userId = $this->app->getAuth()->getLoggedUserId();
+        $movieId = $this->request()->getValue('movieId');
+        $errors = $this->request()->getValue('errors');
 
-    public function login(): Response
-    {
-        #TODO prerobit na moj use case
-        $formData = $this->app->getRequest()->getPost();
-        $logged = null;
-        if (isset($formData['submit'])) {
-            $logged = $this->app->getAuth()->login($formData['login'], $formData['password']);
-            if ($logged) {
-                return $this->redirect($this->url("home.index"));
-            }
-        }
-
-        $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
-        return $this->html($data);
+        return $this->html([
+            'post' => Activity::findOne($userId, $movieId),
+            'movieId' => $movieId,
+            'errors' => $errors,
+        ]);
     }
 
     public function register(): Response

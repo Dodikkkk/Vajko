@@ -4,6 +4,13 @@ CREATE TABLE `users` (
  `password` varchar(96) NOT NULL
 );
 
-insert into users (name, password) VALUES ('admin', 'admin');
+create table activities
+(
+    id       int auto_increment primary key,
+    user_id  int    not null,
+    movie_id int    not null,
+    rating   double null
+);
 
-#TODO hashovanie hesiel
+
+insert into users (name, password) VALUES ('admin', 'admin');

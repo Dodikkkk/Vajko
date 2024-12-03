@@ -1,5 +1,6 @@
 <?php
 
+/** @var Array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
@@ -55,39 +56,20 @@
 </div>
 
 <div class="d-flex flex-wrap">
+    <?php foreach ($data['activities'] as $post): ?>
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
+            <a href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
+            <div>
+                <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><span class="highlighted p-2">Hardcore Henry</span></a><br>
+                <span>Score: </span><?= $post->getRating() ?>
+            </div>
         </div>
         <div class="activityDate p-2">
             2 days ago
         </div>
     </div>
-
-    <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
-        </div>
-        <div class="activityDate p-2">
-            2 days ago
-        </div>
-    </div>
-
-    <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="d-flex align-items-center justify-content-center p-2">
-            <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie") ?>"><span class="highlighted p-2">Hardcore Henry</span></a>
-        </div>
-        <div class="activityDate p-2">
-            2 days ago
-        </div>
-    </div>
+    <?php endforeach; ?>
 </div>

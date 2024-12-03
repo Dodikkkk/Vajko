@@ -1,8 +1,11 @@
 <?php
 
+/** @var array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
+
+$movies = $data['movies'];
 ?>
 
 <div class="d-flex textColor m-5 justify-content-center">
@@ -48,69 +51,14 @@
 </div>
 
 <div class="d-flex flex-wrap justify-content-center m-5 imgRes">
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
+    <?php foreach ($movies as $movie) { ?>
+        <div class="m-3">
+            <div>
+                <a href="<?= $link->url("home.movie", ['movieId' => $movie['movieId']]) ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
+            </div>
+            <div class="pt-2">
+                <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
+            </div>
         </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-    <div class="m-3">
-        <div>
-            <a href="<?= $link->url("home.movie") ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
-        </div>
-        <div class="pt-2">
-            <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
-        </div>
-    </div>
-
+    <?php } ?>
 </div>

@@ -1,8 +1,11 @@
 <?php
 
+/** @var array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
+
+$movieId = $data['movieId'];
 ?>
 
 <div class="d-flex flex-wrap">
@@ -10,9 +13,11 @@
         <div>
             <img class="moviePageImage" src="public/images/poster.jpg" alt="404">
         </div>
-        <a class="btn btn-primary textColor  setAsWatched" href="<?= $link->url("home.form") ?>">
-            Set Status
-        </a>
+        <?php if ($auth->isLogged()) { ?>
+            <a class="btn btn-primary textColor  setAsWatched" href="<?= $link->url("home.form", ['movieId' => $movieId]) ?>">
+                Set Status
+            </a>
+        <?php } ?>
     </div>
     <div class="movieHeader">
         <div class="movieTitle ">
