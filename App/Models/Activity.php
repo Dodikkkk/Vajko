@@ -11,6 +11,8 @@ class Activity extends Model
     protected ?int $movie_id = null;
     protected ?float $rating = null;
 
+    protected ?string $date = null;
+
     public static function findOne(int $userId, int $movieId): Activity | null
     {
         return Activity::getAll('user_id = :userId and movie_id = :movieId', ['userId' => $userId, 'movieId' => $movieId])[0] ?? null;
@@ -54,5 +56,15 @@ class Activity extends Model
     public function setRating(?float $rating): void
     {
         $this->rating = $rating;
+    }
+
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+    public function setDate(?string $date): void
+    {
+        $this->date = $date;
     }
 }

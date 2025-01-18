@@ -130,4 +130,14 @@ class HomeController extends AControllerBase
     {
         return $this->html();
     }
+
+    public function list(): Response
+    {
+        $posts = Activity::getAll('user_id = :userId', ['userId' => $this->app->getAuth()->getLoggedUserId()]);
+        return $this->html(
+            [
+                'activities' => $posts,
+            ]
+        );
+    }
 }

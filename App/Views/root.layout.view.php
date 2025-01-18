@@ -27,10 +27,13 @@
         <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link navBarColors" href="<?= $link->url("home.browse") ?>">Browse</a>
+                    <a class="nav-link navBarColors px-4" href="<?= $link->url("home.browse") ?>">Browse</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link navBarColors" href="<?= $link->url($auth->isLogged() ? "home.index" : "auth.login") ?>">Profile</a>
+                    <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "home.index" : "auth.login") ?>">Profile</a>
+                </li>
+                <li>
+                    <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "home.list" : "auth.login") ?>">My List</a>
                 </li>
             </ul>
         </div>

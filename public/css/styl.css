@@ -25,7 +25,31 @@
     background: #151F2E;
 }
 
+.list {
+    color: #769AAA;
+    background: #151F2E;
+}
+
+.listTable {
+    color: #769AAA;
+    background: #151F2E;
+}
+
+.list:hover {
+    background: #DA4127;
+    color: #151F2E;
+}
+
+.list:hover a {
+    background: #DA4127;
+    color: #151F2E;
+}
+
 .highlighted {
+    color: #DA4127;
+}
+
+.highlightedList {
     color: #DA4127;
 }
 
@@ -45,6 +69,13 @@
 .activityImage {
     height: 10rem;
 }
+.listImage {
+    width: 3rem;
+}
+
+.listTitle {
+    width: 50%;
+}
 
 .activityDate {
     margin-left: auto;
@@ -53,6 +84,11 @@
 .activityWidth {
     flex-grow: 1;
     flex-basis: 30rem;
+}
+
+.listWidth {
+    flex-grow: 0;
+    width: 80%;
 }
 
 .activityTextMargin {
