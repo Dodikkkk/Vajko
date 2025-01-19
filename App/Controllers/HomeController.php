@@ -35,7 +35,7 @@ class HomeController extends AControllerBase
      * Example of an action (authorization needed)
      * @return \App\Core\Responses\Response|\App\Core\Responses\ViewResponse
      */
-    public function index(): Response
+    public function profile(): Response
     {
         $posts = Activity::getAll('user_id = :userId', ['userId' => $this->app->getAuth()->getLoggedUserId()]);
         return $this->html(
@@ -95,7 +95,7 @@ class HomeController extends AControllerBase
         return $this->html();
     }
 
-    public function browse(): Response
+    public function index(): Response
     {
         $movies = [
             ['movieId' => 1, 'name' => 'Fero'],
