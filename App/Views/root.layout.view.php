@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-lg navBarColors fw-bold">
     <div class="d-flex align-items-center justify-content-center full-width">
 
-        <a class="navbar-brand" href="<?= $link->url($auth->isLogged() ? 'auth.logout' : "auth.login") ?>" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
+        <a class="navbar-brand" href="<?= $link->url("home.index") ?>" ><img src="public/images/logo2.webp" class="maly-obrazok" alt="404"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,9 +38,14 @@
             </ul>
         </div>
 
+
         <form class="form-inline my-2 my-md-0">
             <input class="form-control " type="text" placeholder="Search" aria-label="Search">
         </form>
+
+        <?php if ($auth->isLogged()): ?>
+            <a class="nav-link navBarColors px-4 mx-3" href="<?= $link->url('auth.logout') ?>">Logout</a>
+        <?php endif; ?>
     </div>
 </nav>
 <div class="container-fluid mt-3">

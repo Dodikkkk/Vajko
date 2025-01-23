@@ -201,3 +201,10 @@
     color: azure;
     width: 6rem;
 }
+
+.logoutButton {
+    margin: 1rem;
+    background: rgb(61, 180, 242);
+    color: azure;
+    width: 85%;
+}
