@@ -11,7 +11,13 @@
         <div class="row text-center">
             <div class="col text-center p-1">
                 <div class="highlighted">
-                    12
+                    <?php
+                    $counter = 0;
+                    foreach ($data['activities'] as $post) {
+                        $counter++;
+                    }
+                    echo $counter;
+                    ?>
                 </div>
                 <div class="">
                     Total Movies
@@ -19,6 +25,7 @@
             </div>
             <div class="col text-center p-1">
                 <div class="highlighted">
+                    <!--TODO pocitadlo aj pre toto -->
                     1.2
                 </div>
                 <div class="">
@@ -27,7 +34,19 @@
             </div>
             <div class="col text-center p-1">
                 <div class="highlighted">
-                    7.7
+                    <?php
+                    $sum = 0;
+                    $counter = 0;
+                    foreach ($data['activities'] as $post) {
+                        $sum = $sum + $post->getRating();
+                        $counter++;
+                    }
+                    if ($counter > 0) {
+                        echo round($sum / $counter, 2);
+                    } else {
+                        echo "0";
+                    }
+                    ?>
                 </div>
                 <div class="">
                     Mean Score
@@ -37,17 +56,118 @@
     </div>
     <div class="d-flex p-2 border-top">
         <div class="nula">
-            0
+            <?php $counter = 0;
+            foreach ($data['activities'] as $post) {
+                $counter++;
+            }
+            if ($counter < 11) {
+                echo "0";
+            } elseif ($counter > 10 && $counter < 26) {
+                echo "10";
+            } elseif ($counter > 25 && $counter < 101) {
+                echo "25";
+            } elseif ($counter > 100 && $counter < 251) {
+                echo "100";
+            } else {
+                echo "250";
+            }
+            ?>
         </div>
         <div class="polovica">
-            50
+            <?php $counter = 0;
+            foreach ($data['activities'] as $post) {
+                $counter++;
+            }
+            if ($counter < 11) {
+                echo "5";
+            } elseif ($counter > 10 && $counter < 26) {
+                echo "17.5";
+            } elseif ($counter > 25 && $counter < 101) {
+                echo "62.5";
+            } elseif ($counter > 100 && $counter < 251) {
+                echo "625";
+            } else {
+                echo "1000";
+            }
+            ?>
         </div>
         <div class="stovka">
-            100
+            <?php $counter = 0;
+            foreach ($data['activities'] as $post) {
+                $counter++;
+            }
+            if ($counter < 11) {
+                echo "10";
+            } elseif ($counter > 10 && $counter < 26) {
+                echo "25";
+            } elseif ($counter > 25 && $counter < 101) {
+                echo "100";
+            } elseif ($counter > 100 && $counter < 251) {
+                echo "250";
+            } else {
+                echo "1000";
+            }
+            ?>
         </div>
     </div>
     <div class="progress">
-        <div class="progress-bar highlightedBg" role="progressbar" style="width: 12%;" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar highlightedBg" role="progressbar" style="width: <?php
+        $counter = 0;
+        foreach ($data['activities'] as $post) {
+            $counter++;
+        }
+        echo $counter;
+        $ratio = 0;
+        if ($counter < 11) {
+            $ratio = 10;
+        } elseif ($counter > 10 && $counter < 26) {
+            $ratio = 25;
+        } elseif ($counter > 25 && $counter < 101) {
+            $ratio = 100;
+        } elseif ($counter > 100 && $counter < 251) {
+            $ratio = 250;
+        } else {
+            $ratio = 1000;
+        }
+        $ratio = $counter / $ratio;
+        echo $ratio;
+        ?>%;" aria-valuenow="<?php
+        $counter = 0;
+        foreach ($data['activities'] as $post) {
+            $counter++;
+        }
+        echo $counter;
+        ?>" aria-valuemin="<?php $counter = 0;
+        foreach ($data['activities'] as $post) {
+            $counter++;
+        }
+        if ($counter < 11) {
+            echo "0";
+        } elseif ($counter > 10 && $counter < 26) {
+            echo "10";
+        } elseif ($counter > 25 && $counter < 101) {
+            echo "25";
+        } elseif ($counter > 100 && $counter < 251) {
+            echo "100";
+        } else {
+            echo "250";
+        }
+        ?>" aria-valuemax="<?php $counter = 0;
+        foreach ($data['activities'] as $post) {
+            $counter++;
+        }
+        if ($counter < 11) {
+            echo "10";
+        } elseif ($counter > 10 && $counter < 26) {
+            echo "25";
+        } elseif ($counter > 25 && $counter < 101) {
+            echo "100";
+        } elseif ($counter > 100 && $counter < 251) {
+            echo "250";
+        } else {
+            echo "1000";
+        }
+        ?>"></div>
     </div>
 </div>
 

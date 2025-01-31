@@ -29,7 +29,7 @@
         </form>
 
         <div class="loginBar">
-            Aleready have account? <a href="<?= $link->url("home.login") ?>">Login here</a>
+            Aleready have account? <a href="<?= $link->url("auth.login") ?>">Login here</a>
         </div>
 
     </div>
