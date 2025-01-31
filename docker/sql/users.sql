@@ -13,4 +13,4 @@ create table activities
 );
 
 
-insert into users (name, password) VALUES ('admin', 'admin');
+insert into users (name, password) VALUES ('admin', '$2a$10$QrDXixROcz5azNGyYOnA1uoBs3Q/qlVd56Uqtp6eEvS9nuO1FOW/m');
