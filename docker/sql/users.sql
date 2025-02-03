@@ -9,7 +9,8 @@ create table activities
     id       int auto_increment primary key,
     user_id  int    not null,
     movie_id int    not null,
-    rating   double null
+    rating   double null,
+    date     varchar(24)
 );
 
 

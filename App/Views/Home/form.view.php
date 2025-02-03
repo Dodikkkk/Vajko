@@ -13,6 +13,8 @@ $invalidStatus = in_array('status', $errors);
 $invalidRating = in_array('rating', $errors);
 ?>
 
+
+
 <div class="container mt-5 textColor">
     <h1 class="text-center">Edit Status</h1>
     <?php if ($invalidRating || $invalidStatus) { ?>
@@ -39,12 +41,19 @@ $invalidRating = in_array('rating', $errors);
         </div>
 
         <div class="mb-3">
+            <input class="form-check-input" type="checkbox" id="hideDateCheckbox" onclick="display()" checked>
+            <label class="form-check-label" for="hideDateCheckbox">This Date</label>
+        </div>
+
+        <div class="mb-3" id="date" style="display:none">
             <label for="date" class="form-label">Date</label>
-            <input type="date" id="date" name="date" class="form-control">
+            <input type="date" name="date" class="form-control" id="dateText">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
 </div>
 
+
+<script src="public/js/unCheckBox.js"><script
 <script src="public/js/defaultDate.js"></script>

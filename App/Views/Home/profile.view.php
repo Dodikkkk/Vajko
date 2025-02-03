@@ -188,7 +188,18 @@
             </div>
         </div>
         <div class="activityDate p-2">
-            2 days ago
+            <?= /*$storedDate = $post->getDate();
+            $storedDateTime = new DateTime($storedDate);
+            $currentDateTime = new DateTime();
+            $interval = $storedDateTime->diff($currentDateTime);
+            if ($interval->y > 0) {echo $interval->format('%Y years ago'); }
+            elseif ($interval->m > 0) {echo $interval->format('%m months ago'); }
+            elseif ($interval->d > 0) {echo $interval->format('%d days ago'); }
+            elseif ($interval->h > 0) {echo $interval->format('%h hours ago'); }
+            elseif ($interval->i > 0) {echo $interval->format('%i minutes ago'); }
+            elseif ($interval->s > 0) {echo $interval->format('%s seconds ago'); }*/
+            $post->getDate();
+            ?>
         </div>
     </div>
     <?php endforeach; ?>
