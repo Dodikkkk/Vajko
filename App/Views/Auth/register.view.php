@@ -1,5 +1,6 @@
 <?php
 
+/** @var Array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
@@ -13,19 +14,25 @@
 
         <form class="form-signup" method="post" action="<?= $link->url("register") ?>">
             <div class="loginBar">
-                <form class="my-2 my-md-0">
+                <div class="my-2 my-md-0">
                     <input name="login" type="text" id="login" class="form-control" placeholder="Login" required>
-                </form>
+                </div>
             </div>
             <div class="loginBar">
-                <form class="my-2 my-md-0">
+                <div class="my-2 my-md-0">
                     <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
-                </form>
+                </div>
             </div>
 
-            <div class="btn btn-primary textColor loginButton fw-bold" type="submit" name="submit">
-                Login
-            </div>
+            <?php
+            if (isset($data['message'])) {
+                echo $data['message'];
+            }
+            ?>
+
+            <button class="btn btn-primary textColor loginButton fw-bold" type="submit" name="submit">
+                Register
+            </button>
         </form>
 
         <div class="loginBar">

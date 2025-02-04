@@ -88,4 +88,9 @@ class DummyAuthenticator implements IAuthenticator
     {
         return $_SESSION['user'];
     }
+
+    public function register(string $username, string $password): bool
+    {
+        return false;
+    }
 }

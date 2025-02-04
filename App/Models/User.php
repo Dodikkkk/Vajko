@@ -7,6 +7,7 @@ use App\Core\Model;
 
 class User extends Model
 {
+    protected ?int $id = null;
     protected ?int $user_id = null;
     protected ?string $name = null;
     protected ?string $password = null;
@@ -44,6 +45,16 @@ class User extends Model
     public function setPassword(?string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
 

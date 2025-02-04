@@ -6,6 +6,7 @@ use App\Config\Configuration;
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
 use App\Core\Responses\ViewResponse;
+use App\Models\User;
 
 /**
  * Class AuthController
@@ -40,6 +41,34 @@ class AuthController extends AControllerBase
 
         $data = ($logged === false ? ['message' => 'Zlý login alebo heslo!'] : []);
         return $this->html($data);
+    }
+    /**
+     * Register a user
+     * @return Response
+     */
+    public function register(): Response
+    {
+        $formData = $this->app->getRequest()->getPost();
+
+        if (isset($formData['submit'])) {
+            $username = $formData['login'] ?? '';
+            $password = $formData['password'] ?? '';
+
+            if (empty($username) || empty($password)) {
+                return $this->html(['message' => 'Všetky polia sú povinné!']);
+            }
+
+            $registered = $this->app->getAuth()->register($username, $password);
+
+            if ($registered) {
+                $this->app->getAuth()->login($username, $password);
+                return $this->redirect($this->url("home.index"));
+            } else {
+                return $this->html(['message' => 'Používateľ s týmto menom už existuje!']);
+            }
+        }
+
+        return $this->html([]);
     }
 
     /**

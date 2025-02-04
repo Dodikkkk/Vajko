@@ -41,13 +41,13 @@ $invalidRating = in_array('rating', $errors);
         </div>
 
         <div class="mb-3">
-            <input class="form-check-input" type="checkbox" id="hideDateCheckbox" onclick="display()" checked>
+            <input class="form-check-input" type="checkbox" id="hideDateCheckbox" onclick="display()" checked name="hideDateCheckBox" value="true">
             <label class="form-check-label" for="hideDateCheckbox">This Date</label>
         </div>
 
         <div class="mb-3" id="date" style="display:none">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" name="date" class="form-control" id="dateText">
+            <label for="dateText" class="form-label">Date</label>
+            <input type="date" name="dateText" class="form-control" id="dateText">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>

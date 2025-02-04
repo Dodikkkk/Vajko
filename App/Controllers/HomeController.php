@@ -54,7 +54,7 @@ class HomeController extends AControllerBase
         $status = $this->request()->getValue('status');
         $rating = floatval($this->request()->getValue('rating'));
         $hideDateCheckbox = $this->request()->getValue('hideDateCheckbox');
-        $dateText = $this->request()->getValue('dateText');             //TODO toto neviem co vracia. debug hovori ze null
+        $dateText = $this->request()->getValue('dateText');
         $invalidElements = [];
 
         if (!in_array($status, ['Watched', 'Not Watched'])) {
@@ -73,16 +73,16 @@ class HomeController extends AControllerBase
 
             if ($existingActivity) {
                 $existingActivity->setRating($rating);
+                if ($dateText == null) { $existingActivity->setDate(date('Y-m-d H:i:s')); }
+                else { $existingActivity->setDate($dateText . " 12:00:00"); }
                 $existingActivity->save();
-                if ($hideDateCheckbox) { $existingActivity->setDate(date('Y-m-d H:i:s')); }
-                else { $existingActivity->setDate($dateText); }
             } else {
                 $activ = new Activity();
                 $activ->setUserId($userId);
                 $activ->setMovieId($movieId);
                 $activ->setRating($rating);
-                if ($hideDateCheckbox) { $activ->setDate(date('Y-m-d H:i:s')); }    //TODO neviem co mi vracia ten element. tipujem bool
-                else { $existingActivity->setDate($dateText); }
+                if ($dateText == null) { $activ->setDate(date('Y-m-d H:i:s')); }    //TODO neviem co mi vracia ten element. tipujem bool TODO solved?
+                else { $activ->setDate($dateText . " 12:00:00"); }
                 $activ->save();
             }
         } elseif ($status === 'Not Watched' && $existingActivity) {
@@ -130,11 +130,6 @@ class HomeController extends AControllerBase
             'movieId' => $movieId,
             'errors' => $errors,
         ]);
-    }
-
-    public function register(): Response
-    {
-        return $this->html();
     }
 
     public function list(): Response

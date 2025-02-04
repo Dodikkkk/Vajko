@@ -86,4 +86,17 @@ class LoginAuthentificator implements IAuthenticator
     {
         return $this->getLoggedUserContext()->getUserId();
     }
+
+    public function register(string $username, string $password): bool
+    {
+        if (User::findByName($username) != null) {
+            return false;
+        }
+
+        $newUser = new User();
+        $newUser->setName($username);
+        $newUser->setPassword(password_hash($password, PASSWORD_DEFAULT));
+        $newUser->save();
+        return true;
+    }
 }

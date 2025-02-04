@@ -25,7 +25,7 @@
         </form>
 
         <div class="loginBar">
-            Don't have account? <a href="<?= $link->url("home.register") ?>">Register here</a>
+            Don't have account? <a href="<?= $link->url("auth.register") ?>">Register here</a>
         </div>
 
     </div>

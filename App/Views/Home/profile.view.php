@@ -39,7 +39,7 @@
                     $counter = 0;
                     foreach ($data['activities'] as $post) {
                         $sum = $sum + $post->getRating();
-                        $counter++;
+                        if ($post->getRating() != 0) {$counter++;}
                     }
                     if ($counter > 0) {
                         echo round($sum / $counter, 2);
@@ -184,11 +184,13 @@
         <div class="d-flex align-items-center justify-content-center p-2">
             <div>
                 <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><span class="highlighted p-2">Hardcore Henry</span></a><br>
-                <span>Score: </span><?= $post->getRating() ?>
+                <?php if ($post->getRating() != 0): ?>
+                    <span>Score: </span><?= $post->getRating() ?>
+                <?php endif; ?>
             </div>
         </div>
         <div class="activityDate p-2">
-            <?= /*$storedDate = $post->getDate();
+            <?php $storedDate = $post->getDate();
             $storedDateTime = new DateTime($storedDate);
             $currentDateTime = new DateTime();
             $interval = $storedDateTime->diff($currentDateTime);
@@ -197,8 +199,7 @@
             elseif ($interval->d > 0) {echo $interval->format('%d days ago'); }
             elseif ($interval->h > 0) {echo $interval->format('%h hours ago'); }
             elseif ($interval->i > 0) {echo $interval->format('%i minutes ago'); }
-            elseif ($interval->s > 0) {echo $interval->format('%s seconds ago'); }*/
-            $post->getDate();
+            elseif ($interval->s > 0) {echo $interval->format('%s seconds ago'); }
             ?>
         </div>
     </div>
