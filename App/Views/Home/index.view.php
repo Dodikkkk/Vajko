@@ -54,10 +54,10 @@ $movies = $data['movies'];
     <?php foreach ($movies as $movie) { ?>
         <div class="m-3">
             <div>
-                <a href="<?= $link->url("home.movie", ['movieId' => $movie['movieId']]) ?>"><img class="browseImage" src="public/images/poster.jpg" alt="404"></a>
+                <a href="<?= $link->url("home.movie", ['movieId' => $movie->getId()]) ?>"><img class="browseImage" src="<?= $movie->getImage() ?>" alt="Image not Found"></a>
             </div>
-            <div class="pt-2">
-                <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie") ?>">Hardcore Henry</a>
+            <div class="pt-2" style="max-width: 13rem">
+                <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie", ['movieId' => $movie->getId()]) ?>"><?= $movie->getTitle() ?></a>
             </div>
         </div>
     <?php } ?>

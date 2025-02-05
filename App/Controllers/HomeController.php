@@ -107,12 +107,8 @@ class HomeController extends AControllerBase
 
     public function index(): Response
     {
-        $movies = [
-            ['movieId' => 1, 'name' => 'Fero'],
-            ['movieId' => 2, 'name' => 'Jozo'],
-            ['movieId' => 3, 'name' => 'Hardcore'],
-            ['movieId' => 4, 'name' => 'Henry'],
-        ];
+        $movies = Movie::getAll();
+        //$movies = array_slice($movies, 0, 69);
 
         return $this->html(['movies' => $movies]);
     }
@@ -120,7 +116,6 @@ class HomeController extends AControllerBase
     public function movie(): Response
     {
         $movieId = $this->request()->getValue('movieId');
-        TMDB::getMovieById(939243);
         return $this->html(['movieId' => $movieId]);
     }
 
