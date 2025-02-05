@@ -7,14 +7,25 @@ use App\Core\Model;
 
 class User extends Model
 {
-    protected ?int $id = null;
     protected ?int $user_id = null;
     protected ?string $name = null;
     protected ?string $password = null;
 
+    public static function getPkColumnName(): string
+    {
+        return "user_id";
+    }
+
+    protected int $is_admin = 0;
+
     static public function findByName(string $login): ?User
     {
         return User::getAll('name = :login', ['login' => $login])[0] ?? null;
+    }
+
+    static public function findById(int $id): ?User
+    {
+        return User::getAll('user_id = :id', ['id' => $id])[0] ?? null;
     }
 
     public function getUserId(): ?int
@@ -47,15 +58,13 @@ class User extends Model
         $this->password = $password;
     }
 
-    public function getId(): ?int
+    public function getIsAdmin(): ?int
     {
-        return $this->id;
+        return $this->is_admin;
     }
 
-    public function setId(?int $id): void
+    public function setIsAdmin(?int $is_admin): void
     {
-        $this->id = $id;
+        $this->is_admin = $is_admin;
     }
-
-
 }

@@ -58,8 +58,12 @@
 }
 
 .navBarColors {
-    color: #DBDDE2;
+    color: azure;
     background: #242540;
+}
+
+.navBarColors:hover {
+    color: #DA4127;
 }
 
 .bgColor {
@@ -111,9 +115,12 @@
     color: #769AAA;
 }
 
+.titleColor:hover {
+    color: #DA4127;
+}
+
 .linkText {
     text-decoration: none;
-
 }
 
 .titleColor:hover {

@@ -176,7 +176,10 @@
 </div>
 
 <div class="d-flex flex-wrap">
-    <?php foreach ($data['activities'] as $post): ?>
+    <?php
+    $items = $data['activities'];
+    $items = array_reverse($items);
+    foreach ($items as $post):?>
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
             <a href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>

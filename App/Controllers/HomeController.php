@@ -3,9 +3,14 @@
 namespace App\Controllers;
 
 use App\Core\AControllerBase;
+use App\Core\Responses\EmptyResponse;
 use App\Core\Responses\Response;
 use App\Models\Activity;
-use http\Client\Curl\User;
+use App\Models\Actor;
+use App\Models\Movie;
+use App\Models\Relation;
+use App\Models\User;
+use App\Helpers\TMDB;
 
 /**
  * Class HomeController
@@ -45,6 +50,14 @@ class HomeController extends AControllerBase
         );
     }
 
+    public function delete(): Response
+    {
+        $userId = $this->request()->getValue('id');
+        $user = User::findById($userId);
+        $user->delete();
+        return new EmptyResponse;
+    }
+
     public function save(): Response
     {
         $userId = $this->app->getAuth()->getLoggedUserId();
@@ -81,7 +94,7 @@ class HomeController extends AControllerBase
                 $activ->setUserId($userId);
                 $activ->setMovieId($movieId);
                 $activ->setRating($rating);
-                if ($dateText == null) { $activ->setDate(date('Y-m-d H:i:s')); }    //TODO neviem co mi vracia ten element. tipujem bool TODO solved?
+                if ($dateText == null) { $activ->setDate(date('Y-m-d H:i:s')); }
                 else { $activ->setDate($dateText . " 12:00:00"); }
                 $activ->save();
             }
@@ -90,15 +103,6 @@ class HomeController extends AControllerBase
         }
 
         return $this->redirect($this->url('index'));
-    }
-
-    /**
-     * Example of an action accessible without authorization
-     * @return \App\Core\Responses\ViewResponse
-     */
-    public function contact(): Response
-    {
-        return $this->html();
     }
 
     public function index(): Response
@@ -116,7 +120,24 @@ class HomeController extends AControllerBase
     public function movie(): Response
     {
         $movieId = $this->request()->getValue('movieId');
+        TMDB::getMovieById(939243);
         return $this->html(['movieId' => $movieId]);
+    }
+
+    public function controlPanel(): Response
+    {
+        $users = User::getAll();
+        $userId = $this->app->getAuth()->getLoggedUserId();
+        for ($i = 0; $i < count($users); $i++) {
+            if ($users[$i]->getUserId() === $userId) {
+                array_splice($users, $i, 1);
+            }
+        }
+        return $this->html(
+            [
+                'users' => $users,
+            ]
+        );
     }
 
     public function form(): Response
@@ -140,5 +161,39 @@ class HomeController extends AControllerBase
                 'activities' => $posts,
             ]
         );
+    }
+
+    public function initialDataLoad(): Response
+    {
+        $json = file_get_contents("public/initialLoad/output_format.json");
+
+        $response = json_decode($json, true);
+
+        foreach ($response as $movie) {
+            $result = TMDB::getMovieById($movie['id']);
+            if ($result == null) {
+                return new EmptyResponse;
+            }
+            $film = $result['movie'];
+            $film->save();
+            $actors = $result['cast'];
+            foreach ($actors as $actor) {
+                $one = Actor::findOne($actor->getName());
+                if ($one == null) {
+                    $actor->save();
+                    $rel = new Relation();
+                    $rel->setActorId($actor->getActorId());
+                    $rel->setMovieId($movie['id']);
+                    $rel->save();
+                } else {
+                    $rel = new Relation();
+                    $rel->setActorId($one->getActorId());
+                    $rel->setMovieId($movie['id']);
+                    $rel->save();
+                }
+            }
+            usleep(21000);
+        }
+        return new EmptyResponse;
     }
 }

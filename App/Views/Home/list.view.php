@@ -37,9 +37,11 @@
         </div>
         <div class="dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Alphabetically
+                Time Added - Oldest
             </button>
             <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Time Added - Oldest</a></li>
+                <li><a class="dropdown-item" href="#">Time Added - Newest</a></li>
                 <li><a class="dropdown-item" href="#">Alphabetically</a></li>
                 <li><a class="dropdown-item" href="#">Rating - Best</a></li>
                 <li><a class="dropdown-item" href="#">Rating - Worst</a></li>
@@ -67,7 +69,7 @@
         <tr class="list">
             <td><a href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><img class="listImage" src="public/images/poster.jpg" alt="404"></a></td>
             <td class="align-middle"><a class="linkText highlightedList px-2 fw-bold" href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>">Hardcore Henry</a></td>
-            <td class="align-middle text-center"><?= $post->getRating() ?></td>
+            <td class="align-middle text-center"><?php if ($post->getRating() != 0) { echo $post->getRating();} ?></td>
             <td class="align-middle text-center">Action, Sci-fi</td>
             <td class="align-middle text-center">8. 4. 2016</td>
         <?php endforeach; ?>

@@ -35,6 +35,11 @@
                 <li>
                     <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "home.list" : "auth.login") ?>">My List</a>
                 </li>
+                <?php if ($auth->isLogged() && $auth->getLoggedUserContext()->getIsAdmin() == 1): ?>
+                    <li class="nav-item">
+                        <a class="nav-link navBarColors px-5" href="<?= $link->url($auth->isLogged() ? "home.controlPanel" : "auth.login") ?>">Control Panel</a>
+                    </li>
+                <?php endif; ?>
             </ul>
         </div>
 

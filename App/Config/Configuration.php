@@ -19,6 +19,8 @@ class Configuration
     public const APP_NAME = 'Vaííčko MVC FW';
     public const FW_VERSION = '2.2';
 
+    public const TMDB_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYjNjY2QwMTUyNGE0ODBlMDJhMjE3NTEyNzFlNDYzNCIsIm5iZiI6MTczMDEyNTE1OC4zNDA5OTk4LCJzdWIiOiI2NzFmOWQ2NjM0YzBmYWJkNjgxZDI0YTYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.vb0arYZ80wSbOkLT_OIhgz1gwb5VxU4QvHHrr6ttgDg";
+
     /**
      * DB settings
      */
