@@ -49,7 +49,7 @@ class MovieController extends AControllerBase
         $userId = $this->app->getAuth()->getLoggedUserId();
         $movieId = $this->request()->getValue('movieId');
         $errors = $this->request()->getValue('errors');
-        if (Movie::findById($movieId) !== null) {
+        if (Movie::findById($movieId) === null) {
             return $this->redirect($this->url('home.index'));
         }
         return $this->html([
