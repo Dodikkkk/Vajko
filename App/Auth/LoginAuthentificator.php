@@ -66,6 +66,9 @@ class LoginAuthentificator implements IAuthenticator
      */
     public function getLoggedUserContext(): ?User
     {
+        if (!isset($_SESSION['user'])) {
+            return null;
+        }
         return User::findByName($_SESSION['user']);
     }
 

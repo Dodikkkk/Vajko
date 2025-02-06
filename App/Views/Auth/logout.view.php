@@ -5,7 +5,7 @@ $layout = 'auth';
 ?>
 
 <div class="d-flex align-items-center justify-content-center ">
-    <div class=" navBarColors m-5 p-5 text-center loginBox flex-grow-1">
+    <div class=" loginColors m-5 p-5 text-center loginBox flex-grow-1">
         <div class="loginText">
             <h4 class="fw-bold m-3">You have been logged out</h4>
         </div>

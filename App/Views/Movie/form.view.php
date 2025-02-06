@@ -11,18 +11,18 @@ $movieId = $data['movieId'];
 $errors = explode(',', $data['errors'] ?? '');
 $invalidStatus = in_array('status', $errors);
 $invalidRating = in_array('rating', $errors);
+$invalidDate = in_array('date', $errors);
 ?>
-
-
 
 <div class="container mt-5 textColor">
     <h1 class="text-center">Edit Status</h1>
-    <?php if ($invalidRating || $invalidStatus) { ?>
+    <?php if ($invalidRating || $invalidStatus || $invalidDate) { ?>
         <div class="alert alert-danger">
             There was an error with your request.
             <ul>
                 <?= $invalidStatus ? '<li>Your status is invalid!</li>' : '' ?>
                 <?= $invalidRating ? '<li>Your rating is invalid!</li>' : '' ?>
+                <?= $invalidDate ? '<li>Your date is invalid!</li>' : '' ?>
             </ul>
         </div>
     <?php } ?>
@@ -47,7 +47,7 @@ $invalidRating = in_array('rating', $errors);
 
         <div class="mb-3" id="date" style="display:none">
             <label for="dateText" class="form-label">Date</label>
-            <input type="date" name="dateText" class="form-control" id="dateText">
+            <input max="<?= date("Y-m-d") ?>" type="date" name="dateText" class="form-control" id="dateText">
         </div>
 
         <button type="submit" class="btn btn-primary">Save</button>

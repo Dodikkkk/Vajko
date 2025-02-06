@@ -1,5 +1,6 @@
 <?php
 
+/** @var array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
@@ -29,28 +30,33 @@
                 <li class="nav-item active">
                     <a class="nav-link navBarColors px-4" href="<?= $link->url("home.index") ?>">Browse</a>
                 </li>
+                <?php if ($auth->isLogged()) { ?>
                 <li class="nav-item">
-                    <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "home.profile" : "auth.login") ?>">Profile</a>
+                    <a class="nav-link navBarColors px-4" href="<?= $link->url("home.profile") ?>">Profile</a>
                 </li>
                 <li>
-                    <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "home.list" : "auth.login") ?>">My List</a>
+                    <a class="nav-link navBarColors px-4" href="<?= $link->url("home.list") ?>">My List</a>
                 </li>
+                <?php } ?>
                 <?php if ($auth->isLogged() && $auth->getLoggedUserContext()->getIsAdmin() == 1): ?>
                     <li class="nav-item">
-                        <a class="nav-link navBarColors px-5" href="<?= $link->url($auth->isLogged() ? "home.controlPanel" : "auth.login") ?>">Control Panel</a>
+                        <a class="nav-link navBarColors px-4" href="<?= $link->url($auth->isLogged() ? "admin.index" : "auth.login") ?>">Control Panel</a>
                     </li>
                 <?php endif; ?>
             </ul>
         </div>
 
 
-        <form class="form-inline my-2 my-md-0">
-            <input class="form-control " type="text" placeholder="Search" aria-label="Search">
+        <form class="form-inline my-2 my-md-0" onsubmit="updateSearchFromFilters()">
+            <input type="submit" hidden="">
+            <input class="form-control" style="min-width: 5rem" type="text" placeholder="Search" aria-label="Search" name="search" id="search">
         </form>
 
-        <?php if ($auth->isLogged()): ?>
+        <?php if ($auth->isLogged()) { ?>
             <a class="nav-link navBarColors px-4 mx-3" href="<?= $link->url('auth.logout') ?>">Logout</a>
-        <?php endif; ?>
+        <?php } else { ?>
+        <a class="nav-link navBarColors px-4 mx-3" href="<?= $link->url('auth.login') ?>">Login</a>
+        <?php } ?>
     </div>
 </nav>
 <div class="container-fluid mt-3">
@@ -58,5 +64,6 @@
         <?= $contentHTML ?>
     </div>
 </div>
+<script src="public/js/filter.js"></script>
 </body>
 </html>

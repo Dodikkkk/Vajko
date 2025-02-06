@@ -14,20 +14,15 @@ $movies = $data['movies'];
             Year
         </div>
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="yearBtn">
                 Any
             </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">2024</a></li>
-                <li><a class="dropdown-item" href="#">2023</a></li>
-                <li><a class="dropdown-item" href="#">2022</a></li>
-                <li><a class="dropdown-item" href="#">2021</a></li>
-                <li><a class="dropdown-item" href="#">2020</a></li>
-                <li><a class="dropdown-item" href="#">2019</a></li>
-                <li><a class="dropdown-item" href="#">2018</a></li>
-                <li><a class="dropdown-item" href="#">2017</a></li>
-                <li><a class="dropdown-item" href="#">2016</a></li>
-                <li><a class="dropdown-item" href="#">2015</a></li>
+            <ul class="dropdown-menu scrollableDropdown" id="year">
+                <?php
+                for ($i = 2026; $i >= 1922; $i--) {
+                    echo "<li><button id='year". $i ."' onclick='updateYearFilter(". $i . ")' class=\"dropdown-item\">$i</button></li>";
+                }
+                ?>
             </ul>
         </div>
     </div>
@@ -36,29 +31,34 @@ $movies = $data['movies'];
             Sort by
         </div>
         <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Alphabetically
+            <button class="btn btn-secondary dropdown-toggle" id="orderBtn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Default
             </button>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Alphabetically</a></li>
-                <li><a class="dropdown-item" href="#">Rating - Best</a></li>
-                <li><a class="dropdown-item" href="#">Rating - Worst</a></li>
-                <li><a class="dropdown-item" href="#">Newest</a></li>
-                <li><a class="dropdown-item" href="#">Oldest</a></li>
+                <li><button class="dropdown-item" onclick="updateOrderFilter(1)" id="order1">Alphabetically</button></li>
+                <li><button class="dropdown-item" onclick="updateOrderFilter(2)" id="order2">Rating - Best</button></li>
+                <li><button class="dropdown-item" onclick="updateOrderFilter(3)" id="order3">Rating - Worst</button></li>
+                <li><button class="dropdown-item" onclick="updateOrderFilter(4)" id="order4">Newest</button></li>
+                <li><button class="dropdown-item" onclick="updateOrderFilter(5)" id="order5">Oldest</button></li>
             </ul>
         </div>
     </div>
 </div>
 
 <div class="d-flex flex-wrap justify-content-center m-5 imgRes">
-    <?php foreach ($movies as $movie) { ?>
+    <?php if(count($movies) != 0) {
+    foreach ($movies as $movie) { ?>
         <div class="m-3">
             <div>
-                <a href="<?= $link->url("home.movie", ['movieId' => $movie->getId()]) ?>"><img class="browseImage" src="<?= $movie->getImage() ?>" alt="Image not Found"></a>
+                <a href="<?= $link->url("movie.index", ['movieId' => $movie->getId()]) ?>"><img class="browseImage" src="<?= $movie->getImage() ?>" alt="Image not Found"></a>
             </div>
             <div class="pt-2" style="max-width: 13rem">
-                <a class="titleColor fw-bold linkText" href="<?= $link->url("home.movie", ['movieId' => $movie->getId()]) ?>"><?= $movie->getTitle() ?></a>
+                <a class="titleColor fw-bold linkText" href="<?= $link->url("movie.index", ['movieId' => $movie->getId()]) ?>"><?= $movie->getTitle() ?></a>
             </div>
         </div>
+    <?php }} else { ?>
+    <div class="m-3" style="color: azure">
+        <h1>No movies were found...</h1>
+    </div>
     <?php } ?>
 </div>

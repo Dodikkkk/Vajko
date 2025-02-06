@@ -55,13 +55,20 @@ abstract class Model implements \JsonSerializable
             $stmt = self::$connection->prepare($sql);
             $stmt->execute($whereParams);
             $models = $stmt->fetchAll(PDO::FETCH_CLASS | PDO::FETCH_PROPS_LATE, static::class);
-            foreach ($models as $model) {
-                $model->_dbId = $model->{static::getPkColumnName()};
+            if (!static::hasCompositePrimaryKey()){
+                foreach ($models as $model) {
+                    $model->_dbId = $model->{static::getPkColumnName()};
+                }
             }
             return $models;
         } catch (PDOException $e) {
             throw new \Exception('Query failed: ' . $e->getMessage(), 0, $e);
         }
+    }
+
+    protected static function hasCompositePrimaryKey(): bool
+    {
+        return false;
     }
 
     /**
@@ -150,7 +157,7 @@ abstract class Model implements \JsonSerializable
                 $sql = "INSERT INTO `" . static::getTableName() . "` ($columns) VALUES ($params)";
                 $stmt = self::$connection->prepare($sql);
                 $stmt->execute($data);
-                if (!isset($this->{static::getPkColumnName()})) {
+                if (!static::hasCompositePrimaryKey() && !isset($this->{static::getPkColumnName()})) {
                     $this->{static::getPkColumnName()} = self::$connection->lastInsertId();
                     $this->_dbId = $this->{static::getPkColumnName()};
                 }

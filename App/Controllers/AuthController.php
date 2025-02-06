@@ -55,7 +55,17 @@ class AuthController extends AControllerBase
             $password = $formData['password'] ?? '';
 
             if (empty($username) || empty($password)) {
-                return $this->html(['message' => 'Všetky polia sú povinné!']);
+                return $this->html(['message' => 'All fields are required!']);
+            }
+
+            if (strlen($username) > 32) {
+                return $this->html(['message' => 'Username can have maximum 32 characters!']);
+            }
+
+            for ($i = 0; $i < strlen($username); $i++) {
+                if (!ctype_alnum($username[$i])) {
+                    return $this->html(['message' => 'Invalid characters! Only letters and numbers are allowed!']);
+                }
             }
 
             $registered = $this->app->getAuth()->register($username, $password);
@@ -64,7 +74,7 @@ class AuthController extends AControllerBase
                 $this->app->getAuth()->login($username, $password);
                 return $this->redirect($this->url("home.index"));
             } else {
-                return $this->html(['message' => 'Používateľ s týmto menom už existuje!']);
+                return $this->html(['message' => 'User already exists!']);
             }
         }
 

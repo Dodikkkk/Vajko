@@ -4,6 +4,7 @@
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
+$movies = $data['movies'];
 ?>
 
 <div class="d-flex flex-column m-3 p-2 stats fw-bold">
@@ -11,13 +12,7 @@
         <div class="row text-center">
             <div class="col text-center p-1">
                 <div class="highlighted">
-                    <?php
-                    $counter = 0;
-                    foreach ($data['activities'] as $post) {
-                        $counter++;
-                    }
-                    echo $counter;
-                    ?>
+                    <?= count($data['activities']) ?>
                 </div>
                 <div class="">
                     Total Movies
@@ -25,8 +20,7 @@
             </div>
             <div class="col text-center p-1">
                 <div class="highlighted">
-                    <!--TODO pocitadlo aj pre toto -->
-                    1.2
+                    <?= $data['daysWatched'] ?>
                 </div>
                 <div class="">
                     Days Watched
@@ -34,19 +28,7 @@
             </div>
             <div class="col text-center p-1">
                 <div class="highlighted">
-                    <?php
-                    $sum = 0;
-                    $counter = 0;
-                    foreach ($data['activities'] as $post) {
-                        $sum = $sum + $post->getRating();
-                        if ($post->getRating() != 0) {$counter++;}
-                    }
-                    if ($counter > 0) {
-                        echo round($sum / $counter, 2);
-                    } else {
-                        echo "0";
-                    }
-                    ?>
+                    <?= $data['mean']?>
                 </div>
                 <div class="">
                     Mean Score
@@ -56,118 +38,17 @@
     </div>
     <div class="d-flex p-2 border-top">
         <div class="nula">
-            <?php $counter = 0;
-            foreach ($data['activities'] as $post) {
-                $counter++;
-            }
-            if ($counter < 11) {
-                echo "0";
-            } elseif ($counter > 10 && $counter < 26) {
-                echo "10";
-            } elseif ($counter > 25 && $counter < 101) {
-                echo "25";
-            } elseif ($counter > 100 && $counter < 251) {
-                echo "100";
-            } else {
-                echo "250";
-            }
-            ?>
+            <?= $data['start']?>
         </div>
         <div class="polovica">
-            <?php $counter = 0;
-            foreach ($data['activities'] as $post) {
-                $counter++;
-            }
-            if ($counter < 11) {
-                echo "5";
-            } elseif ($counter > 10 && $counter < 26) {
-                echo "17.5";
-            } elseif ($counter > 25 && $counter < 101) {
-                echo "62.5";
-            } elseif ($counter > 100 && $counter < 251) {
-                echo "625";
-            } else {
-                echo "1000";
-            }
-            ?>
+            <?= $data['mid'] ?>
         </div>
         <div class="stovka">
-            <?php $counter = 0;
-            foreach ($data['activities'] as $post) {
-                $counter++;
-            }
-            if ($counter < 11) {
-                echo "10";
-            } elseif ($counter > 10 && $counter < 26) {
-                echo "25";
-            } elseif ($counter > 25 && $counter < 101) {
-                echo "100";
-            } elseif ($counter > 100 && $counter < 251) {
-                echo "250";
-            } else {
-                echo "1000";
-            }
-            ?>
+            <?= $data['end'] ?>
         </div>
     </div>
     <div class="progress">
-        <div class="progress-bar highlightedBg" role="progressbar" style="width: <?php
-        $counter = 0;
-        foreach ($data['activities'] as $post) {
-            $counter++;
-        }
-        echo $counter;
-        $ratio = 0;
-        if ($counter < 11) {
-            $ratio = 10;
-        } elseif ($counter > 10 && $counter < 26) {
-            $ratio = 25;
-        } elseif ($counter > 25 && $counter < 101) {
-            $ratio = 100;
-        } elseif ($counter > 100 && $counter < 251) {
-            $ratio = 250;
-        } else {
-            $ratio = 1000;
-        }
-        $ratio = $counter / $ratio;
-        echo $ratio;
-        ?>%;" aria-valuenow="<?php
-        $counter = 0;
-        foreach ($data['activities'] as $post) {
-            $counter++;
-        }
-        echo $counter;
-        ?>" aria-valuemin="<?php $counter = 0;
-        foreach ($data['activities'] as $post) {
-            $counter++;
-        }
-        if ($counter < 11) {
-            echo "0";
-        } elseif ($counter > 10 && $counter < 26) {
-            echo "10";
-        } elseif ($counter > 25 && $counter < 101) {
-            echo "25";
-        } elseif ($counter > 100 && $counter < 251) {
-            echo "100";
-        } else {
-            echo "250";
-        }
-        ?>" aria-valuemax="<?php $counter = 0;
-        foreach ($data['activities'] as $post) {
-            $counter++;
-        }
-        if ($counter < 11) {
-            echo "10";
-        } elseif ($counter > 10 && $counter < 26) {
-            echo "25";
-        } elseif ($counter > 25 && $counter < 101) {
-            echo "100";
-        } elseif ($counter > 100 && $counter < 251) {
-            echo "250";
-        } else {
-            echo "1000";
-        }
-        ?>"></div>
+        <div class="progress-bar highlightedBg" role="progressbar" style="width: <?= $data['ratio'] ?>%;" aria-valuenow="<?= count($data['activities'])?>" aria-valuemin="<?= $data['start'] ?>" aria-valuemax="<?= $data['end'] ?>"></div>
     </div>
 </div>
 
@@ -178,15 +59,21 @@
 <div class="d-flex flex-wrap">
     <?php
     $items = $data['activities'];
-    $items = array_reverse($items);
-    foreach ($items as $post):?>
+    foreach ($items as $post):
+        $movie = null;
+        foreach ($movies as $mov) {
+            if ($post->getMovieId() == $mov->getId()) {
+                $movie = $mov;
+            }
+        }
+        ?>
     <div class="d-flex flex-row m-3  stats fw-bold activityWidth">
         <div>
-            <a href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><img class="activityImage" src="public/images/poster.jpg" alt="404"></a>
+            <a href="<?= $link->url("movie.index", ['movieId' => $post->getMovieId()]) ?>"><img class="activityImage" src="<?= $movie->getImage() ?>" alt="404"></a>
         </div>
         <div class="d-flex align-items-center justify-content-center p-2">
             <div>
-                <span>Watched</span><a class="linkText" href="<?= $link->url("home.movie", ['movieId' => $post->getMovieId()]) ?>"><span class="highlighted p-2">Hardcore Henry</span></a><br>
+                <span>Watched</span><a class="linkText" href="<?= $link->url("movie.index", ['movieId' => $post->getMovieId()]) ?>"><span class="highlighted p-2"><?= $movie->getTitle() ?></span></a><br>
                 <?php if ($post->getRating() != 0): ?>
                     <span>Score: </span><?= $post->getRating() ?>
                 <?php endif; ?>

@@ -18,6 +18,19 @@ class Movie extends Model
     protected ?string $director;
     protected ?string $trailer;
 
+    static public function findById(int $id): ?Movie
+    {
+        return Movie::getAll('id = :id', ['id' => $id])[0] ?? null;
+    }
+
+    static public function search(string $title, ?int $year, ?MovieOrder $order): array
+    {
+        $title = str_replace('%', '\\%', $title);
+        $title = str_replace('_', '\\_', $title);
+        $title = strtolower($title);
+        return Movie::getAll("lower(title) like concat('%',:title,'%') and (:year is null or (release_date is not null and :year = cast( substring(release_date, 1, 4) as integer)))", ['title' => $title, 'year' => $year], orderBy: $order?->getOrder(), limit: 420);
+    }
+
     public function getId(): ?int
     {
         return $this->id;

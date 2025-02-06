@@ -62,8 +62,22 @@
     background: #242540;
 }
 
+.loginColors {
+    color: azure;
+    background: #242540;
+}
+
 .navBarColors:hover {
     color: #DA4127;
+}
+
+.navbar-toggler {
+    border: 1px solid azure;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    color: azure;
 }
 
 .bgColor {
@@ -102,6 +116,11 @@
 
 .browseImage {
     width: 13rem;
+}
+
+.scrollableDropdown {
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 .moviePageImage {
@@ -207,6 +226,11 @@
     background: rgb(61, 180, 242);
     color: azure;
     width: 6rem;
+}
+
+.changeButton {
+    background: rgb(61, 180, 242);
+    color: azure;
 }
 
 .logoutButton {

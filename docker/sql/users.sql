@@ -45,9 +45,4 @@ create table relations
     foreign key (movie_id) references movies (id)
 );
 
-create table updateHistory
-(
-    zaznam datetime primary key not null
-);
-
 insert into users (name, password, is_admin) VALUES ('admin', '$2a$10$QrDXixROcz5azNGyYOnA1uoBs3Q/qlVd56Uqtp6eEvS9nuO1FOW/m', 1);

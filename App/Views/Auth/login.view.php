@@ -1,16 +1,21 @@
 <?php
 
+/** @var Array $data */
 /** @var string $contentHTML */
 /** @var \App\Core\IAuthenticator $auth */
 /** @var \App\Core\LinkGenerator $link */
 ?>
 
 <div class="d-flex align-items-center justify-content-center ">
-    <div class=" navBarColors m-5 p-5 text-center loginBox flex-grow-1">
+    <div class=" loginColors m-5 p-5 text-center loginBox flex-grow-1">
         <div class="loginText">
             <h4 class="fw-bold m-3">Login</h4>
         </div>
-
+        <?php if(isset($data['message'])) { ?>
+        <div class="alert alert-danger" role="alert">
+        <?php echo $data['message']; ?>
+        </div>
+        <?php } ?>
         <form class="form-signin" method="post" action="<?= $link->url("auth.login") ?>">
             <div class="loginBar">
                 <input name="login" type="text" id="login" class="form-control" placeholder="Login" required>
